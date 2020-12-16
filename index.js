@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const pool = require("./src/dbfolder/db");
 
+const PORT = process.env.PORT;
+
 app.use(cors());
 
 app.use(express.json());
@@ -72,7 +74,7 @@ app.delete("/hotdogs/:id", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   pool.query(
     // "DROP TABLE  goods;",
     "CREATE TABLE goods ( id uuid NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(), name TEXT NOT NULL, img TEXT NOT NULL, price  TEXT NOT NULL, amount INT NOT NULL, info  TEXT NOT NULL );",
